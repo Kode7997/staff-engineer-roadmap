@@ -1,2 +1,2 @@
 # staff-engineer-roadmap
-Roadmap for layer understanding of each component
+Roadmap for layered understanding of systems
