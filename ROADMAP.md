@@ -1,6 +1,6 @@
-# 🏗️ 12-Month Staff Engineer Roadmap — Path B
+# 🏗️ 12-Month s-e-roadmap
 
-**Target:** Staff Engineer  
+**Target:** SE  
 **Core Stack:** C++ · Linux · Concurrency · Hardware Architecture · AI/ML Integration  
 **Start Date:** 2026-02-11  
 
