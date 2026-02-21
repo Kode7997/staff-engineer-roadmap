@@ -53,10 +53,9 @@ public:
     explicit operator bool() const noexcept { return fd_ >= 0; }
 };
 
-// --- Usage example ---
-// int main() {
-//     auto f = open_file("test.txt", "w");
-//     std::fprintf(f.get(), "Hello RAII\n");
-//     // f automatically closed here — no leak possible
-//     return 0;
-// }
+int main() {
+    auto f = open_file("test.txt", "w");
+    std::fprintf(f.get(), "Hello RAII\n");
+    // f automatically closed here — no leak possible
+    return 0;
+}
