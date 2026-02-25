@@ -1,5 +1,3 @@
-#include <iostream>
-#include <vector>
 
 /*
 Note:
@@ -35,7 +33,33 @@ Note:
         iii. Copy Assignment T& operator=(const T&) -- Deep copy
         iv. Move Constructor T(const T&&) -- steal Resources(C++11)
         v. Move Assignment T& operator=(T&&) --steal Resources(C++11)
+
+        As compiler defines trivial members if not defined but doesn't know resource is owned or not.
 */
+
+#include <iostream>
+#include <vector>
+#include <string>
+
+
+class String {
+
+    char *data_;
+    size_t size_;
+
+    public:
+
+        String(const char* s): size_(strlen(s)){
+            std::cout<<"constructor of A"<<std::endl;
+            data_ = new char[size_+1];
+            strcpy(data_, s);
+        }
+
+        ~String(){
+            std::cout<<"destructor of A"<<std::endl;
+            delete[] data_;
+        }
+};
 
 
 int main()
@@ -56,5 +80,10 @@ int main()
     delete ptr1;    //manual cleanup. must return memory to allocator else will cause MEMORY LEAK
     delete[] ptr2;  //manual cleanup. if not cleaned then will cause LEAK
 
+
+    {
+        String s1("memory allocation");
+        String s2=s1;   // does shallow copy where s2 is pointing to s1 address location.
+    }                   // As object goes out of scope, destructor called 2 times and program might crash.
     return 0;
 }
