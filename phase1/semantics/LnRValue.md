@@ -90,28 +90,29 @@ int&& rref = std::move(x); // x becomes invalid and using of x after this exp wi
 
 ### 3. Decision flow chart
 
-Is the object a temporary (rvalue)?
-│
-├─ YES → Can use rvalue reference (T&&)
-│        └─ Move semantics: steal resources
-│           Example: MyClass(MyClass&& other) { ... }
-│
-└─ NO (lvalue) → Use lvalue reference (const T&) or copy
-                └─ Copy semantics: deep copy
-                    Example: MyClass(const MyClass& other) { ... }
+    Is the object a temporary (rvalue)?
+    │
+    ├─ YES → Can use rvalue reference (T&&)
+    │        └─ Move semantics: steal resources
+    │           Example: MyClass(MyClass&& other) { ... }
+    │
+    └─ NO (lvalue) → Use lvalue reference (const T&) or copy
+                    └─ Copy semantics: deep copy
+                        Example: MyClass(const MyClass& other) { ... }
 
 ### 4. Applications of lvalue and rlvalue
 
 #### Key Insight Summary
 
-**Operation           Method                              Time    Example**
-Copy Constructor    Allocate + Copy each element        O(n)    new + memcpy
-Move Constructor    Steal pointer, invalidate source    O(1)    Just pointer swap
-Copy Assignment     Delete old + Allocate + Copy        O(n)    delete[] + new + memcpy
-Move Assignment     Delete old + Steal pointer          O(1)   delete[] + pointer swap
+| Operation | Method | Time | Example |
+|---|---|---|---|
+| Copy Constructor | Allocate + Copy each element | O(n) | new + memcpy |
+| Move Constructor | Steal pointer, invalidate source | O(1) | Just pointer swap |
+| Copy Assignment | Delete old + Allocate + Copy | O(n) | delete[] + new + memcpy |
+| Move Assignment | Delete old + Steal pointer | O(1) | delete[] + pointer swap |
 
 ### 5. Reference v/s Pointer
 
-Reference and Pointers are not the same.
-    - reference cannot be null but pointer can be nullptr
-    - under-hood compiler convert reference to pointers and performs operation but semantically in cpp reference is alias to object.
+* Reference and Pointers are not the same.
+* reference cannot be null but pointer can be nullptr
+* Under-hood compiler convert reference to pointers and performs operation but semantically in cpp reference is alias to object.
