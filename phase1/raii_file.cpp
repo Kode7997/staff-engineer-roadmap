@@ -34,7 +34,7 @@ class FileDescriptor {
 public:
     explicit FileDescriptor(int fd) noexcept : fd_(fd) {}
     ~FileDescriptor() { 
-    //    if (fd_ >= 0) ::close(fd_); 
+       if (fd_ >= 0) ::close(fd_); 
     }
 
     // Move-only
@@ -42,8 +42,8 @@ public:
         : fd_(std::exchange(other.fd_, -1)) {}
     FileDescriptor& operator=(FileDescriptor&& other) noexcept {
         if (this != &other) {
-            // if (fd_ >= 0) ::close(fd_);
-            // fd_ = std::exchange(other.fd_, -1);
+            if (fd_ >= 0) ::close(fd_);
+            fd_ = std::exchange(other.fd_, -1);
         }
         return *this;
     }

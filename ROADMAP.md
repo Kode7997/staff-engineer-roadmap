@@ -173,11 +173,13 @@ Every struct       → "What is the memory layout? Padding? Cache line?"
 | 8 | Compile-time: constexpr, consteval, template metaprogramming | Compile-time hash map or type-safe unit system |
 
 ### Mini-Projects
+
 1. `PoolAllocator<T>` — fixed-block allocator with RAII, move semantics, and alignment control
 2. `Optional<T>` — supports move-only types, emplacement, strong exception safety
 3. Struct layout analyzer — prints field offsets, padding bytes, total size, cache-line crossings
 
 ### Acceptance Criteria
+
 - [ ] Zero leaks (Valgrind clean)
 - [ ] Move constructors are `noexcept`
 - [ ] APIs express ownership clearly in signatures
@@ -186,6 +188,7 @@ Every struct       → "What is the memory layout? Padding? Cache line?"
 - [ ] Design doc: 1-page writeup of allocator design decisions
 
 ### Resources
+
 - *Effective Modern C++* — Scott Meyers
 - cppreference.com
 - Compiler Explorer (godbolt.org) for assembly inspection
@@ -215,22 +218,26 @@ Every struct       → "What is the memory layout? Padding? Cache line?"
 | 16 | Profiling: perf, ftrace, strace, Valgrind, ASan/TSan | Profile all previous projects, write perf reports |
 
 ### Compiler & ABI Internals (Week 15–16 overlap)
+
 - vtable layout, virtual dispatch cost measurement
 - Calling conventions (System V AMD64 ABI)
 - Name mangling, `extern "C"`, linker scripts basics
 - LTO (Link-Time Optimization) and its impact on inlining
 
 ### Mini-Projects
+
 1. **Multi-client chat server** — epoll-based, non-blocking, with clean resource management (RAII for fds)
 2. **Memory profiler** — tracks mmap/munmap calls via LD_PRELOAD, reports allocation hot-spots
 
 ### Acceptance Criteria
+
 - [ ] Chat server handles 1000+ concurrent connections
 - [ ] perf report identifies and explains top 3 hotspots
 - [ ] mmap-based file I/O benchmarked and compared with explanation
 - [ ] Design doc: virtual memory layout diagram for your programs
 
 ### Resources
+
 - *The Linux Programming Interface* — Michael Kerrisk
 - *Understanding the Linux Kernel* — Bovet & Cesati
 - `man 7 signal`, `man 2 mmap`, `man 7 epoll`
@@ -260,10 +267,12 @@ Every struct       → "What is the memory layout? Padding? Cache line?"
 | 24 | Lock-free MPMC queue (intro), ABA problem, hazard pointers | Design doc for MPMC queue (implement in Phase 5) |
 
 ### Mini-Projects
+
 1. **Thread pool with work-stealing** — move-only task type, RAII lifetime, benchmarked
 2. **SPSC lock-free ring buffer** — cache-line aligned, templated, stress-tested
 
 ### Acceptance Criteria
+
 - [ ] SPSC ring: zero lost items under 10M ops stress test (2 threads, 10 min)
 - [ ] Thread pool: handles 100K tasks, benchmark against `std::async`
 - [ ] Memory orderings documented with "why" for each choice
@@ -271,6 +280,7 @@ Every struct       → "What is the memory layout? Padding? Cache line?"
 - [ ] Design doc: memory ordering diagram for SPSC ring buffer
 
 ### Resources
+
 - *C++ Concurrency in Action* — Anthony Williams
 - Jeff Preshing's blog on lock-free programming
 - CppCon talks on atomics (Herb Sutter, Fedor Pikus)
@@ -300,15 +310,18 @@ Every struct       → "What is the memory layout? Padding? Cache line?"
 | 32 | DMA, PCIe, host↔device transfers, pinned memory, streams | Benchmark: pageable vs pinned memory transfer |
 
 ### eBPF (Week 28 overlap)
+
 - Write a simple eBPF program for tracing syscalls or network packets
 - Understand how eBPF enables safe kernel-space programmability
 
 ### Mini-Projects
+
 1. **Cache-aware matrix multiply** — benchmark naive vs blocked vs SIMD-hinted, analyze with perf
 2. **GPU vector add + matrix multiply** — CUDA/HIP, profile with nvprof/rocprof
 3. **False sharing eliminator** — tool that detects and fixes false sharing in given code
 
 ### Acceptance Criteria
+
 - [ ] Can explain MESI protocol and demonstrate false sharing with numbers
 - [ ] CUDA matrix multiply achieves >50% of theoretical peak (for given GPU)
 - [ ] Cross-compiled ARM binary runs correctly under QEMU
@@ -316,6 +329,7 @@ Every struct       → "What is the memory layout? Padding? Cache line?"
 - [ ] Design doc: CPU vs GPU execution model comparison
 
 ### Resources
+
 - *Computer Systems: A Programmer's Perspective* — Bryant & O'Hallaron
 - Intel/ARM architecture manuals
 - NVIDIA CUDA Programming Guide
@@ -388,12 +402,14 @@ Every struct       → "What is the memory layout? Padding? Cache line?"
 **Demonstrates:** AI integration, cross-layer visibility, C++ ↔ Python interop, eBPF, lock-free transport, systems reasoning.
 
 ### Project C: Lock-Free MPMC Queue (Hard Data Structure)
+
 - Full hazard-pointer or epoch-based reclamation
 - Templated, allocator-aware, cache-line padded
 - Stress tested with 8+ producer/consumer threads
 - Benchmarked against `moodycamel::ConcurrentQueue` and `boost::lockfree::queue`
 
 ### Deliverables for each project
+
 - [ ] Working code with CI (GitHub Actions: GCC + Clang, ASan + TSan)
 - [ ] Design doc (3–5 pages): architecture, memory ordering rationale, trade-offs
 - [ ] Benchmark report with graphs
@@ -409,6 +425,7 @@ Every struct       → "What is the memory layout? Padding? Cache line?"
 ### Technical Interview Prep (starts Month 3, intensifies here)
 
 **Weekly cadence from Month 3:**
+
 - 2 LeetCode medium/hard (concurrency, systems, bit manipulation)
 - 1 system design problem per week
 - 1 "explain to me" verbal drill
@@ -448,6 +465,7 @@ Every struct       → "What is the memory layout? Padding? Cache line?"
 | 11–12 | Apply. Reach out to recruiters/referrals. Prepare portfolio walkthrough demo (15 min). |
 
 ### Resume Bullet Format (Staff-level)
+
 ```
 • Designed and implemented a lock-free SPSC ring buffer achieving 
   50M ops/sec with zero data loss under TSan, reducing inter-thread 
@@ -511,4 +529,5 @@ Every struct       → "What is the memory layout? Padding? Cache line?"
 | C++ Core Guidelines (isocpp.github.io) | All |
 | cppreference.com | All |
 | Compiler Explorer (godbolt.org) for assembly inspection | All |
+
 ```
