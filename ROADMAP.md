@@ -135,6 +135,7 @@ sudo apt install linux-perf hotspot flamegraph
 ```
 
 ### Deliverables
+
 - [ ] CMakeLists.txt template with ASan/TSan/UBSan toggles, cross-compile target, benchmark target
 - [ ] Stack diagram printed/pinned to wall
 - [ ] All tools installed and verified
