@@ -122,7 +122,7 @@ void test_cyclic_reference() {
 
 int main()
 {
-    //test_copy();
+    test_copy();
 
     test_cyclic_reference();
 
